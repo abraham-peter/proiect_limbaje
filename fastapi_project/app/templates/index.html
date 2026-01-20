@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Text Summarizer</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI Text Summarizer</h1>
+            <p>Summarize long texts (up to 5000 tokens) using PyTorch & BART.</p>
+        </header>
+
+        <main>
+            <div class="input-section">
+                <textarea id="inputText" placeholder="Paste your long text here..."></textarea>
+                <div class="controls">
+                    <button id="summarizeBtn" onclick="summarizeText()">Summarize</button>
+                    <span id="charCount">0 characters</span>
+                </div>
+            </div>
+
+            <div class="output-section">
+                <h2>Summary</h2>
+                <div id="loading" class="hidden">
+                    <div class="spinner"></div>
+                    <p>Processing... This may take a while for long texts.</p>
+                </div>
+                <div id="summaryOutput" class="summary-box">
+                    Your summary will appear here.
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>

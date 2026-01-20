@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount current directory to /app in container for development (hot reload)
+      # But careful with copying .venv or __pycache__
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    # Increase timeout for large model loading if needed or handled by app
+    restart: unless-stopped
