@@ -15,13 +15,13 @@ warnings.filterwarnings('ignore')
 # INIȚIALIZARE MODEL (se încarcă o singură dată)
 # ============================================================================
 
-print("📥 Se încarcă modelul BART...")
-print("⏳ Primă rulare poate dura câteva minute...\n")
+print("Se încarcă modelul BART...")
+print("Primă rulare poate dura câteva minute...\n")
 
 # Creează pipeline-ul global
 summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
 
-print("✅ Model încărcat! Interfața va porni în curând...\n")
+print("Model încărcat! Interfața va porni în curând...\n")
 
 
 # ============================================================================
@@ -132,12 +132,12 @@ def rezuma_text_interfata(text, lungime, foloseste_hierarchical):
     """
     # Validare input
     if not text or len(text.strip()) < 50:
-        return "⚠️ Te rog introdu un text mai lung (minim ~50 caractere).", ""
+        return "Te rog introdu un text mai lung (minim ~50 caractere).", ""
     
     # Verifică dacă textul este în română
     if detecteaza_limba(text):
         return """
-⚠️ **TEXT ÎN ROMÂNĂ DETECTAT!**
+**TEXT ÎN ROMÂNĂ DETECTAT!**
 
 Modelul **facebook/bart-large-cnn** este antrenat **DOAR pe limba engleză**.
 Text în română va cauza erori sau rezultate incoerente.
@@ -168,13 +168,13 @@ dar acest proiect demonstrează BART standard pentru engleză.
         # Decide ce metodă să folosească
         if foloseste_hierarchical and cuvinte_input > 750:
             # Folosește metoda hierarchical pentru texte lungi
-            warning_msg = f"\n🔄 **METODĂ:** Hierarchical Summarization (textul are {cuvinte_input} cuvinte)\n"
+            warning_msg = f"\n**METODĂ:** Hierarchical Summarization (textul are {cuvinte_input} cuvinte)\n"
             metoda_folosita = "Hierarchical (2 pași)"
             rezumat = rezuma_hierarchical(text, config)
         else:
             # Folosește metoda standard
             if cuvinte_input > 750:
-                warning_msg = f"\n⚠️ **NOTĂ:** Textul are {cuvinte_input} cuvinte. Va fi trunchiat la ~750 cuvinte.\nActivează 'Hierarchical Summarization' pentru a procesa întreg textul.\n"
+                warning_msg = f"\n**NOTĂ:** Textul are {cuvinte_input} cuvinte. Va fi trunchiat la ~750 cuvinte.\nActivează 'Hierarchical Summarization' pentru a procesa întreg textul.\n"
                 metoda_folosita = "Standard (cu truncare)"
             else:
                 metoda_folosita = "Standard"
@@ -189,7 +189,7 @@ dar acest proiect demonstrează BART standard pentru engleză.
         # Formatează statisticile
         statistici = f"""
 {warning_msg}
-📊 **STATISTICI:**
+**STATISTICI:**
 - **Cuvinte text original:** {cuvinte_original}
 - **Cuvinte rezumat:** {cuvinte_rezumat}
 - **Rata de compresie:** {rata_compresie:.1f}%
@@ -204,7 +204,7 @@ dar acest proiect demonstrează BART standard pentru engleză.
         # Mesaj specific pentru erori comune
         if "index out of range" in error_msg.lower():
             return """
-❌ **EROARE: Text incompatibil cu modelul**
+**EROARE: Text incompatibil cu modelul**
 
 Acest model funcționează **DOAR cu text în limba engleză**.
 
@@ -217,7 +217,7 @@ Acest model funcționează **DOAR cu text în limba engleză**.
 Folosește un text **în engleză** (vezi exemplele de mai jos).
             """, ""
         else:
-            return f"❌ Eroare: {error_msg}\n\n💡 Asigură-te că folosești text în limba engleză.", ""
+            return f"Eroare: {error_msg}\n\nAsigură-te că folosești text în limba engleză.", ""
 
 
 # ============================================================================
@@ -251,15 +251,67 @@ def creeaza_interfata():
     Creează și returnează interfața Gradio.
     """
     
+    # CSS personalizat pentru interfață elegantă cu gradient
+    custom_css = """
+    .gradio-container {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    .container {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+    
+    .gr-button-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        border: none !important;
+        border-radius: 10px !important;
+        font-weight: 600 !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .gr-button-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4) !important;
+    }
+    
+    .gr-button {
+        border-radius: 10px !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .gr-input, .gr-textbox {
+        border-radius: 10px !important;
+        border: 2px solid #e0e0e0 !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .gr-input:focus, .gr-textbox:focus {
+        border-color: #667eea !important;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+    }
+    
+    h1, h2, h3 {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    """
+    
     with gr.Blocks(
         title="Text Summarization - BART",
-        theme=gr.themes.Soft()
+        theme=gr.themes.Soft(),
+        css=custom_css
     ) as interfata:
         
         # Header
         gr.Markdown(
             """
-            # 📝 Text Summarization cu BART
+            # Text Summarization cu BART
             ### Proiect Limbaje Formale - UTCN
             
             Această aplicație folosește modelul **facebook/bart-large-cnn** pentru a genera rezumate 
@@ -273,7 +325,7 @@ def creeaza_interfata():
         with gr.Row():
             # Coloana stânga - INPUT
             with gr.Column(scale=1):
-                gr.Markdown("### 📥 Text Original")
+                gr.Markdown("### Text Original")
                 input_text = gr.Textbox(
                     label="Introdu textul (limba engleză)",
                     placeholder="Inserează aici textul pe care vrei să-l rezumi...\n\nExemplu: Climate change is one of the most pressing issues...\n\nNOTĂ: Pentru texte lungi (>750 cuvinte), activează 'Hierarchical Summarization'.",
@@ -289,18 +341,18 @@ def creeaza_interfata():
                 )
                 
                 hierarchical = gr.Checkbox(
-                    label="🔄 Hierarchical Summarization (pentru texte lungi >750 cuvinte)",
+                    label="Hierarchical Summarization (pentru texte lungi >750 cuvinte)",
                     value=True,
                     info="Procesează texte lungi în 2 pași pentru rezultate mai bune"
                 )
                 
                 with gr.Row():
-                    btn_submit = gr.Button("✨ Generează Rezumat", variant="primary", scale=2)
-                    btn_clear = gr.Button("🗑️ Șterge", scale=1)
+                    btn_submit = gr.Button("Generează Rezumat", variant="primary", scale=2)
+                    btn_clear = gr.Button("Șterge", scale=1)
             
             # Coloana dreapta - OUTPUT
             with gr.Column(scale=1):
-                gr.Markdown("### 📤 Rezumat Generat")
+                gr.Markdown("### Rezumat Generat")
                 
                 output_rezumat = gr.Textbox(
                     label="Rezumatul",
@@ -315,7 +367,7 @@ def creeaza_interfata():
         
         # Exemple
         gr.Markdown("---")
-        gr.Markdown("### 💡 Încearcă un exemplu:")
+        gr.Markdown("### Încearcă un exemplu:")
         
         gr.Examples(
             examples=EXEMPLE,
@@ -356,7 +408,7 @@ def creeaza_interfata():
 
 if __name__ == "__main__":
     print("\n" + "="*60)
-    print("🚀 PORNIRE INTERFAȚĂ WEB")
+    print("PORNIRE INTERFAȚĂ WEB")
     print("="*60 + "\n")
     
     app = creeaza_interfata()

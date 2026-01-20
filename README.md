@@ -5,28 +5,28 @@
 
 ---
 
-## 📋 Descriere
+## Descriere
 
 Acest proiect demonstrează **Abstractive Text Summarization** folosind modelul BART (Bidirectional and Auto-Regressive Transformers) de la Facebook/Meta, pre-antrenat pe dataset-ul CNN/DailyMail.
 
-Spre deosebire de **extractive summarization** (care extrage propoziții existente), **abstractive summarization** generează text nou, parafrază și condensează informația ca un om.
+Spre deosebire de **extractive summarization** (care extrage propoziții existente), **abstractive summarization** generează text nou, parafrazează și condensează informația ca un om.
 
 ---
 
-## 🎯 Funcționalități
+## Funcționalități
 
-✅ **Interfață web interactivă** (Gradio) - foarte ușor de folosit!  
-✅ Summarization pe texte în limba engleză  
-✅ Control asupra lungimii rezumatului (scurt/mediu/lung)  
-✅ 3 texte de exemplu pre-încărcate (click și se încarcă)  
-✅ Statistici de compresie în timp real  
-✅ Input text custom - introdu propriul tău text  
-✅ Script pentru terminal (varianta alternativă)  
-✅ Comentarii detaliate în română în cod  
+Interfață web interactivă (Gradio) - foarte ușor de folosit!  
+Summarization pe texte în limba engleză  
+Control asupra lungimii rezumatului (scurt/mediu/lung)  
+3 texte de exemplu pre-încărcate (click și se încarcă)  
+Statistici de compresie în timp real  
+Input text custom - introdu propriul tău text  
+Script pentru terminal (varianta alternativă)  
+Comentarii detaliate în română în cod  
 
 ---
 
-## 🛠️ Tehnologii folosite
+## Tehnologii folosite
 
 - **Python 3.8+**
 - **HuggingFace Transformers** - biblioteca pentru modele NLP
@@ -35,7 +35,7 @@ Spre deosebire de **extractive summarization** (care extrage propoziții existen
 
 ---
 
-## 📦 Instalare
+## Instalare
 
 ### 1. Clonează/Descarcă proiectul
 
@@ -67,9 +67,9 @@ pip install -r requirements.txt
 
 ---
 
-## 🚀 Utilizare
+## Utilizare
 
-### **Opțiunea A - Interfață Web (RECOMANDAT)** 🌐
+### **Opțiunea A - Interfață Web (RECOMANDAT)**
 
 **Pornire rapidă:**
 ```cmd
@@ -86,7 +86,7 @@ Aplicația va porni în browser la: **http://127.0.0.1:7860**
 
 ---
 
-### **Opțiunea B - Script în Terminal** 💻
+### **Opțiunea B - Script în Terminal**
 
 ```bash
 venv\Scripts\activate
@@ -95,11 +95,11 @@ python summarization_bart.py
 
 ---
 
-## 📂 Structura proiectului
+## Structura proiectului
 
 ```
-proiapp.py                     # 🌐 Aplicație web cu interfață Gradio (RECOMANDAT)
-├── summarization_bart.py      # 💻 Script pentru terminal (alternativă)
+proiapp.py                     # Aplicație web cu interfață Gradio (RECOMANDAT)
+├── summarization_bart.py      # Script pentru terminal (alternativă)
 ├── requirements.txt            # Dependințe Python
 ├── setup_venv.bat             # Setup automat pentru Windows
 ├── run_app.bat                # Pornire rapidă aplicație web
@@ -112,7 +112,7 @@ proiapp.py                     # 🌐 Aplicație web cu interfață Gradio (RECO
 
 ---
 
-## 🧪 Exemple de output
+## Exemple de output
 
 **Text original (150 cuvinte):**
 ```
@@ -131,7 +131,7 @@ Experts predict AI will revolutionize healthcare, finance, and education.
 
 ---
 
-## 🎓 Concepte teoretice
+## Concepte teoretice
 
 ### Extractive vs Abstractive Summarization
 
@@ -156,7 +156,7 @@ BART = **B**idirectional and **A**uto-**R**egressive **T**ransformers
 
 ---
 
-## ⚙️ Configurare lungime rezumat
+## Configurare lungime rezumat
 
 În cod poți ajusta lungimea rezumatului modificând parametrii:
 
@@ -170,7 +170,7 @@ configurari_lungime = {
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 **Eroare: "Python nu este instalat"**
 - Descarcă Python de la: https://www.python.org/downloads/
@@ -191,7 +191,7 @@ configurari_lungime = {
 
 ---
 
-## 📚 Resurse utile
+## Resurse utile
 
 - [HuggingFace Transformers Docs](https://huggingface.co/docs/transformers)
 - [BART Paper](https://arxiv.org/abs/1910.13461)
@@ -199,20 +199,20 @@ configurari_lungime = {
 
 ---
 
-## 👥 Autori
+## Autori
 
 **Proiect realizat pentru:** Limbaje Formale - UTCN  
 **Echipă:** 2 persoane  
 
 ---
 
-## 📝 Licență
+## Licență
 
 Acest proiect este realizat în scop educațional pentru UTCN.
 
 ---
 
-## 🔜 Extensii posibile
+## Extensii posibile
 
 - [ ] Suport pentru limba română (model multilingv)
 - [ ] Interfață web (Gradio/Streamlit)

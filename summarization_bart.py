@@ -130,14 +130,14 @@ def creeaza_summarizer(model_name="facebook/bart-large-cnn"):
     Returns:
         Pipeline object pentru summarization
     """
-    print(f"📥 Se încarcă modelul {model_name}...")
-    print("⏳ Aceasta poate dura câteva secunde la prima rulare...\n")
+    print(f"Se încarcă modelul {model_name}...")
+    print("Aceasta poate dura câteva secunde la prima rulare...\n")
     
     # Creează pipeline-ul de summarization
     # task="summarization" specifică că vrem să rezumăm text
     summarizer = pipeline("summarization", model=model_name)
     
-    print("✅ Model încărcat cu succes!\n")
+    print("Model încărcat cu succes!\n")
     return summarizer
 
 
@@ -164,7 +164,7 @@ def rezuma_text(summarizer, text, lungime="mediu"):
     # Obține configurarea pentru lungimea dorită
     config = configurari_lungime.get(lungime, configurari_lungime["mediu"])
     
-    print(f"🔄 Generare rezumat (lungime: {lungime})...")
+    print(f"Generare rezumat (lungime: {lungime})...")
     
     # Generează rezumatul
     # do_sample=False => folosește greedy decoding (deterministă)
@@ -197,19 +197,19 @@ def afiseaza_comparatie(text_original, rezumat, tip_text=""):
     
     print("=" * 80)
     if tip_text:
-        print(f"📄 TIP TEXT: {tip_text.upper()}")
+        print(f"TIP TEXT: {tip_text.upper()}")
     print("=" * 80)
     
-    print(f"\n📊 STATISTICI:")
+    print(f"\nSTATISTICI:")
     print(f"   • Cuvinte text original: {cuvinte_original}")
     print(f"   • Cuvinte rezumat: {cuvinte_rezumat}")
     print(f"   • Rata de compresie: {rata_compresie:.1f}%")
     
-    print(f"\n📝 TEXT ORIGINAL ({cuvinte_original} cuvinte):")
+    print(f"\nTEXT ORIGINAL ({cuvinte_original} cuvinte):")
     print("-" * 80)
     print(text_original.strip())
     
-    print(f"\n✨ REZUMAT ({cuvinte_rezumat} cuvinte):")
+    print(f"\nREZUMAT ({cuvinte_rezumat} cuvinte):")
     print("-" * 80)
     print(rezumat)
     print("\n")
@@ -224,7 +224,7 @@ def main():
     Funcția principală care demonstrează summarization pe textele de exemplu.
     """
     print("\n" + "="*80)
-    print("🚀 PROIECT LIMBAJE FORMALE - TEXT SUMMARIZATION cu BART")
+    print("PROIECT LIMBAJE FORMALE - TEXT SUMMARIZATION cu BART")
     print("="*80 + "\n")
     
     # Creează summarizer-ul
@@ -233,9 +233,9 @@ def main():
     # -------------------------------------------------------------------------
     # DEMO 1: Text scurt
     # -------------------------------------------------------------------------
-    print("\n" + "🔵"*40)
+    print("\n" + "="*40)
     print("DEMONSTRAȚIE 1: TEXT SCURT")
-    print("🔵"*40 + "\n")
+    print("="*40 + "\n")
     
     text_scurt = TEXTE_EXEMPLU["scurt"]
     rezumat_scurt = rezuma_text(summarizer, text_scurt, lungime="scurt")
@@ -245,9 +245,9 @@ def main():
     # -------------------------------------------------------------------------
     # DEMO 2: Text mediu
     # -------------------------------------------------------------------------
-    print("\n" + "🟢"*40)
+    print("\n" + "="*40)
     print("DEMONSTRAȚIE 2: TEXT MEDIU")
-    print("🟢"*40 + "\n")
+    print("="*40 + "\n")
     
     text_mediu = TEXTE_EXEMPLU["mediu"]
     rezumat_mediu = rezuma_text(summarizer, text_mediu, lungime="mediu")
@@ -257,9 +257,9 @@ def main():
     # -------------------------------------------------------------------------
     # DEMO 3: Text lung
     # -------------------------------------------------------------------------
-    print("\n" + "🟡"*40)
+    print("\n" + "="*40)
     print("DEMONSTRAȚIE 3: TEXT LUNG")
-    print("🟡"*40 + "\n")
+    print("="*40 + "\n")
     
     text_lung = TEXTE_EXEMPLU["lung"]
     rezumat_lung = rezuma_text(summarizer, text_lung, lungime="lung")
@@ -269,25 +269,25 @@ def main():
     # -------------------------------------------------------------------------
     # DEMO 4: Comparație diferite lungimi pe același text
     # -------------------------------------------------------------------------
-    print("\n" + "🔴"*40)
+    print("\n" + "="*40)
     print("DEMONSTRAȚIE 4: ACELAȘI TEXT - DIFERITE LUNGIMI")
-    print("🔴"*40 + "\n")
+    print("="*40 + "\n")
     
     text_custom = TEXTE_EXEMPLU["custom"]
     
-    print("📌 Rezumat SCURT:")
+    print("Rezumat SCURT:")
     print("-" * 80)
     rezumat_custom_scurt = rezuma_text(summarizer, text_custom, lungime="scurt")
     print(rezumat_custom_scurt)
     print()
     
-    print("📌 Rezumat MEDIU:")
+    print("Rezumat MEDIU:")
     print("-" * 80)
     rezumat_custom_mediu = rezuma_text(summarizer, text_custom, lungime="mediu")
     print(rezumat_custom_mediu)
     print()
     
-    print("📌 Rezumat LUNG:")
+    print("Rezumat LUNG:")
     print("-" * 80)
     rezumat_custom_lung = rezuma_text(summarizer, text_custom, lungime="lung")
     print(rezumat_custom_lung)
@@ -298,7 +298,7 @@ def main():
     # SECȚIUNE INTERACTIVĂ (opțional)
     # -------------------------------------------------------------------------
     print("\n" + "="*80)
-    print("💡 OPȚIUNE: Vrei să testezi cu propriul tău text?")
+    print("OPȚIUNE: Vrei să testezi cu propriul tău text?")
     print("="*80)
     print("Decomentează secțiunea interactivă din cod sau")
     print("folosește funcția rezuma_text() direct cu textul tău.\n")
@@ -326,7 +326,7 @@ def main():
     """
     
     print("\n" + "="*80)
-    print("✅ DEMONSTRAȚIE COMPLETĂ!")
+    print("DEMONSTRAȚIE COMPLETĂ!")
     print("="*80 + "\n")
 
 
