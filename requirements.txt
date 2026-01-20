@@ -1,0 +1,24 @@
+# Dependințe pentru proiectul de Text Summarization
+# Instalare: pip install -r requirements.txt
+
+# HuggingFace Transformers - biblioteca principală pentru modele NLP
+transformers>=4.35.0
+
+# PyTorch - backend pentru modelele transformer
+# Versiunea CPU (mai ușoară, suficientă pentru inferență)
+torch>=2.0.0
+
+# Tokenizers - pentru procesarea rapidă a textului
+tokenizers>=0.15.0
+
+# Sentencepiece - pentru tokenizare (necesar pentru unele modele)
+sentencepiece>=0.1.99
+
+# Protobuf - pentru serializarea datelor
+protobuf>=3.20.0
+
+# Gradio - pentru interfața web interactivă
+gradio>=4.0.0
+
+# Optional dar recomandat pentru performanță mai bună:
+# accelerate>=0.25.0
